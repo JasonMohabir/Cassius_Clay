@@ -1,0 +1,48 @@
+// Team Cassius Clay - Jason Mohabir and Shanjeed Ali
+// APCS2 pd10
+// HW10 - Justify
+// 2016-03-08
+
+Justify the O(nlog(n)) of MergeSort.
+
+MergeSort is a divide and conquer algorithm. This is the first hint, to the nature of the Big O notation. There are two inherent parts to it. If we to solve backwards, that would mean classifying which part of the algorithm is O(log n) and which part is O(n). 
+
+As discussed in class, a sorting algorithm in general can not be at best solely O(n), since sorting means comparing objects, and that the number of comparisons does not increase linearly as you increase the number of objects. 
+
+Before proving that MergeSort is O(nlog(n)) in all cases, we have discussed some algorithms in the past such as Bubble and Insertion Sort. Both of these sorts (under best conditions) operate in O(n) time, but at worst operate in O(n^2). This is the reason why MergeSort is considered to be such a great sort, because even though it is not as fast as those others sorts on small data sets, it is much faster on larger data sets.
+
+There are three main parts in this algorithm.
+
+The divide step means to slip each array into subarrays. This step takes O(1) time, since it is not dependent on the length of the array. 
+The conquer step means to recursively sort the subarrays of n/2 elements.
+The merge step is to merge n elements, which takes O(n) time, since there is a merging of n subarrays of length 1.
+
+The Big O of MergeSort, can be broken up into the O(left side) + O(right side) + O(merging). We already know that O(merging) is just n. One way to find out the length is to use the trace diagrams used in class. This is especially easy to prove, if we use an n that is a power of 2. 
+
+[ 8 7 6 5 4 3 2 1] (n)
+[ 8 7 6 5 ] [ 4 3 2 1] (n/2)
+[ 8 7 ] [ 6 5 ] [ 4 3 ] [ 2 1 ] (n/4)
+[ 8 ] [ 7 ] [ 6 ] [ 5 ] [ 4 ] [ 3 ] [ 2 ] [ 1 ] (n/8)
+
+The height of the diagram is log(n) + 1. The length of these trees will always be log(n) + 1, since you are halving every array until the array contains 1 element. This means that the sorting step, must sort the arrays log(n) times to reach an array of the size of n. 
+Below is some pseudo-algorithmic code:
+
+n = length of array; 
+if ( n < 2 ) return;
+mid =  n / 2; 
+left = array of size (mid); // constant
+right = array of size ( n - mid ); // constant
+for i (0 to mid - 1) left[i] = A[i]; // linear: deep copying
+for i (mid to n - 1) right[i - mid] = A[i]; // linear: deep copying
+// Sort(a) // logarithmic
+// Merge ( a1, a2 ) // linear
+ Merge(Sort(left) , Sort(right)) // linear * logarithmic
+
+So to summarize, the MergeSort algorithm involves dividing an array in linear time, recursively sorting in logarithmic time, and merging in linear time. 
+
+
+
+
+
+
+
