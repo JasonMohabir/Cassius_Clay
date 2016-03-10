@@ -22,13 +22,44 @@
   <INSERT YOUR RESULTS ANALYSIS HERE>
   ======================================*/
 /*
+Trial 1:
+10 element array: 5798 nanoseconds
+100 element array: 78882 nanoseconds
+1000 element array: 1182709 nanoseconds
+10000 element array: 28089683 nanoseconds
+100000 element array: 18878690 nanoseconds
+1000000 element array: 180049793 nanoseconds
+
+Trial 2:
+10 element array: 5542 nanoseconds
+100 element array: 73451 nanoseconds
+1000 element array: 1091453 nanoseconds
+10000 element array: 29327172 nanoseconds
+100000 element array: 19094337 nanoseconds
+1000000 element array: 182073914 nanoseconds
+
+Trial 3:
+10 element array: 5403 nanoseconds
+100 element array: 75610 nanoseconds
+1000 element array: 978398 nanoseconds
+10000 element array: 16699807 nanoseconds
+100000 element array: 22219069 nanoseconds
+1000000 element array: 180576269 nanoseconds
+
+Averages:
+10 element array:            5 581 nanoseconds
+100 element array:          75 981 nanoseconds
+1000 element array:      1 084 187 nanoseconds
+10000 element array:     2 470 554 nanoseconds
+100000 element array:   20 064 032 nanoseconds
+1000000 element array: 180 899 992 nanoseconds
+
 10log10 = 33.2
 100log100 = 664.4
 1000log1000 = 9965.8
 10000log10000 = 132877.1
 100000log100000 = 1660964.0
 1000000log1000000 = 19931568.6
-
 
  */
 
@@ -78,12 +109,15 @@ public class MergeSortTester
     {
 	MergeSortTester Test = new MergeSortTester();
 	Test.initArrays();
-	long start=100000;
-	long end=100000;
+	long start=0;
+	long end=0;
 
-	System.out.println(Arrays.toString(Test.ten));
-	System.out.println(Arrays.toString(Test.hun));
-
+	/*System.out.println(Arrays.toString(Test.ten));
+	  System.out.println(Arrays.toString(Test.hun));*/
+	start = System.nanoTime();
+	MergeSort.sort(Test.ten);
+	end = System.nanoTime();
+	
 	start = System.nanoTime();
 	MergeSort.sort(Test.ten);
 	end = System.nanoTime();
