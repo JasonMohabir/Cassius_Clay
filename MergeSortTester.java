@@ -21,6 +21,29 @@
 
 public class MergeSortTester 
 {
+    int[] ten = new int[10];
+    int[] hun = new int[100];
+    int[] thou = new int[1000];
+    int[] tenthou = new int[10000];
+    /*run only if it seems possible
+      int[] hunthou = new int[100000];
+      int[] mill = new int[1000000];*/
+    
+    //populating the arrays with random numbers
+    for(int i : ten){
+	i = (int)Math.random()*100;
+    }
+    for(int i : hun){
+	i = (int)Math.random()*1000;
+    }
+    for(int i : thou){
+	i = (int)Math.random()*10000;
+    }
+    for(int i : tenthou){
+	i = (int)Math.random()*100000;
+    }
+    
+    
 
     /******************************
      * execution time analysis 
