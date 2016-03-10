@@ -9,15 +9,28 @@
 
   Mean execution times for dataset of size n:
   Batch size: <# of times each dataset size was run>
-  n=1       time: 
-  n=10      time: 
-  n=100     time: 
-  ...
-  n=<huge>  time: 
+  n=1         time: 
+  n=10        time: 
+  n=100       time: 
+  n=1000      time: 
+  n=10000     time: 
+  n=100000    time: 
+  n=1000000   time: 
+  n=<huge>    time: 
 
   ANALYSIS:
   <INSERT YOUR RESULTS ANALYSIS HERE>
   ======================================*/
+/*
+10log10 = 33.2
+100log100 = 664.4
+1000log1000 = 9965.8
+10000log10000 = 132877.1
+100000log100000 = 1660964.0
+1000000log1000000 = 19931568.6
+
+
+ */
 
 public class MergeSortTester 
 {
@@ -25,9 +38,8 @@ public class MergeSortTester
     int[] hun = new int[100];
     int[] thou = new int[1000];
     int[] tenthou = new int[10000];
-    /*run only if it seems possible
-      int[] hunthou = new int[100000];
-      int[] mill = new int[1000000];*/
+    int[] hunthou = new int[100000];
+    int[] mill = new int[1000000];
     
     //populating the arrays with random numbers
     public void initArrays(){
@@ -43,6 +55,12 @@ public class MergeSortTester
 	for(int i : tenthou){
 	    i = (int)Math.random()*100000;
 	}
+	for(int i: hunthou){
+	    i = (int)Math.random()*1000000;
+	}
+	for(int i: mill){
+	    i = (int)Math.random()*10000000;
+	}
     }
     
     
@@ -57,10 +75,12 @@ public class MergeSortTester
     {
 	MergeSortTester Test = new MergeSortTester();
 	Test.initArrays();
+	long start;
+	long end;
 
-	long start = System.nanoTime();
+	start = System.nanoTime();
 	MergeSort.sort(Test.ten);
-	long end = System.nanoTime();
+	end = System.nanoTime();
 	long runtime1 = end - start;
 
 	start = System.nanoTime();
@@ -78,11 +98,23 @@ public class MergeSortTester
 	end = System.nanoTime();
 	long runtime4 = end - start;
 
+	start = System.nanoTime();
+	MergeSort.sort(Test.hunthou);
+	end = System.nanoTime();
+	long runtime5 = end - start;
+
+	start = System.nanoTime();
+	MergeSort.sort(Test.mill);
+	end = System.nanoTime();
+	long runtime6 = end - start;
+
 	System.out.println("Runtimes:");
-	System.out.println("10 element array: "+runtime1+"nanoseconds");
-	System.out.println("100 element array: "+runtime2+"nanoseconds");
-	System.out.println("1000 element array: "+runtime3+"nanoseconds");
-	System.out.println("10000 element array: "+runtime4+"nanoseconds");
+	System.out.println("10 element array: "+runtime1+" nanoseconds");
+	System.out.println("100 element array: "+runtime2+" nanoseconds");
+	System.out.println("1000 element array: "+runtime3+" nanoseconds");
+	System.out.println("10000 element array: "+runtime4+" nanoseconds");
+	System.out.println("100000 element array: "+runtime5+" nanoseconds");
+	System.out.println("1000000 element array: "+runtime6+" nanoseconds");
 		   
     }//end main
 
