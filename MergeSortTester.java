@@ -32,6 +32,7 @@
 
  */
 
+import java.util.Arrays;
 public class MergeSortTester 
 {
     int[] ten = new int[10];
@@ -43,25 +44,27 @@ public class MergeSortTester
     
     //populating the arrays with random numbers
     public void initArrays(){
-	for(int i : ten){
-	    i = (int)Math.random()*100;
+	for(int i=0; i<ten.length; i++){
+	    ten[i] = (int)(Math.random()*100);
 	}
-	for(int i : hun){
-	    i = (int)Math.random()*1000;
+	for(int i=0; i<hun.length; i++){
+	    hun[i] = (int)(Math.random()*1000);
 	}
-	for(int i : thou){
-	    i = (int)Math.random()*10000;
+	for(int i=0; i<thou.length; i++){
+	    thou[i] = (int)(Math.random()*10000);
 	}
-	for(int i : tenthou){
-	    i = (int)Math.random()*100000;
+	for(int i=0; i<tenthou.length; i++){
+	    tenthou[i] = (int)(Math.random()*100000);
 	}
-	for(int i: hunthou){
-	    i = (int)Math.random()*1000000;
+	for(int i=0; i<hunthou.length; i++){
+	    hunthou[i] = (int)(Math.random()*1000000);
 	}
-	for(int i: mill){
-	    i = (int)Math.random()*10000000;
+	for(int i=0; i<mill.length; i++){
+	    mill[i] = (int)(Math.random()*10000000);
 	}
     }
+    
+    
     
     
 
@@ -75,8 +78,11 @@ public class MergeSortTester
     {
 	MergeSortTester Test = new MergeSortTester();
 	Test.initArrays();
-	long start;
-	long end;
+	long start=100000;
+	long end=100000;
+
+	System.out.println(Arrays.toString(Test.ten));
+	System.out.println(Arrays.toString(Test.hun));
 
 	start = System.nanoTime();
 	MergeSort.sort(Test.ten);
