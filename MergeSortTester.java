@@ -1,71 +1,37 @@
+//Jason Mohabir and Shanjeed Ali
+//APCS2 pd10
+//HW11 -- Wrapping It Up
+//2016-03-11
+
 /*======================================
   class MergeSortTester
 
   ALGORITHM:
-  <INSERT YOUR DISTILLATION OF ALGO HERE>
+  We think that the divide part of MergeSort runs in linear time. The merging and the ordering of the arrays together run in nlogn time. This gives us n+nlogn, which can be written as n(logn+1) which is equal to nlogn.
 
   BIG-OH CLASSIFICATION OF ALGORITHM:
-  <INSERT YOUR EXECUTION TIME CATEGORIZATION OF MERGESORT HERE>
+  nlogn
 
   Mean execution times for dataset of size n:
   Batch size: <# of times each dataset size was run>
-  n=1         time: 
-  n=10        time: 
-  n=100       time: 
-  n=1000      time: 
-  n=10000     time: 
-  n=100000    time: 
-  n=1000000   time: 
-  n=<huge>    time: 
+  n=1         time:           163 nanoseconds
+  n=10        time:       5 581 nanoseconds
+  n=100       time:      75 981 nanoseconds
+  n=1000      time:   1 084 187 nanoseconds
+  n=10000     time:   2 470 554 nanoseconds
+  n=100000    time:  20 064 032 nanoseconds
+  n=1000000   time: 180 899 992 nanoseconds
+  n=<huge>    time:    nlogn
 
   ANALYSIS:
   <INSERT YOUR RESULTS ANALYSIS HERE>
-  ======================================*/
-/*
-Trial 1:
-10 element array: 5798 nanoseconds
-100 element array: 78882 nanoseconds
-1000 element array: 1182709 nanoseconds
-10000 element array: 28089683 nanoseconds
-100000 element array: 18878690 nanoseconds
-1000000 element array: 180049793 nanoseconds
-
-Trial 2:
-10 element array: 5542 nanoseconds
-100 element array: 73451 nanoseconds
-1000 element array: 1091453 nanoseconds
-10000 element array: 29327172 nanoseconds
-100000 element array: 19094337 nanoseconds
-1000000 element array: 182073914 nanoseconds
-
-Trial 3:
-10 element array: 5403 nanoseconds
-100 element array: 75610 nanoseconds
-1000 element array: 978398 nanoseconds
-10000 element array: 16699807 nanoseconds
-100000 element array: 22219069 nanoseconds
-1000000 element array: 180576269 nanoseconds
-
-Averages:
-10 element array:            5 581 nanoseconds
-100 element array:          75 981 nanoseconds
-1000 element array:      1 084 187 nanoseconds
-10000 element array:     2 470 554 nanoseconds
-100000 element array:   20 064 032 nanoseconds
-1000000 element array: 180 899 992 nanoseconds
-
-10log10 = 33.2
-100log100 = 664.4
-1000log1000 = 9965.8
-10000log10000 = 132877.1
-100000log100000 = 1660964.0
-1000000log1000000 = 19931568.6
-
- */
+  We graphed both our data and the runtimes we got from running mergeSort. The graphs are similar but our empirical runtime does not increase as fast as we expected.The graph for the data has a less steep increase than the graph of y=xlogx. 
+  ====================================*/
 
 import java.util.Arrays;
 public class MergeSortTester 
 {
+    int[] one = new int[1];
     int[] ten = new int[10];
     int[] hun = new int[100];
     int[] thou = new int[1000];
@@ -75,6 +41,9 @@ public class MergeSortTester
     
     //populating the arrays with random numbers
     public void initArrays(){
+	for(int i=0; i<one.length; i++){
+	    ten[i] = (int)(Math.random()*10);
+	}
 	for(int i=0; i<ten.length; i++){
 	    ten[i] = (int)(Math.random()*100);
 	}
@@ -117,6 +86,11 @@ public class MergeSortTester
 	start = System.nanoTime();
 	MergeSort.sort(Test.ten);
 	end = System.nanoTime();
+
+	start = System.nanoTime();
+	MergeSort.sort(Test.one);
+	end = System.nanoTime();
+	long runtime0 = end - start;
 	
 	start = System.nanoTime();
 	MergeSort.sort(Test.ten);
@@ -149,6 +123,7 @@ public class MergeSortTester
 	long runtime6 = end - start;
 
 	System.out.println("Runtimes:");
+	System.out.println("1 element array: "+runtime0+" nanoseconds");
 	System.out.println("10 element array: "+runtime1+" nanoseconds");
 	System.out.println("100 element array: "+runtime2+" nanoseconds");
 	System.out.println("1000 element array: "+runtime3+" nanoseconds");
